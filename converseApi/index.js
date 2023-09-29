@@ -5,12 +5,20 @@ const port = 3000;
 
 // 05 importando requisicoes clientes;
 const router = require("./routers/index");
+const bodyParser = require('body-parser');
 
 // 08 chama funcao de conexao e criacao de tabela do banco de dados
 const conexao = require("./database/conexao");
 const tabelas = require("./database/tabelas");
 
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+
+app.use(express.json());
+
 tabelas.init(conexao);
+app.use(express.urlencoded({ extended: true }));
+
 router(app,express);
 
 app.listen(port, (error)=>{

@@ -22,7 +22,7 @@ class tabelas {
         this.conexao.query(sql, (error) =>{
             if(error){
                 console.log("Erro ao criar tabela");
-                console.log(error.message());
+                console.log(error.message);
                 return;
             }
         console.log("tabela criada");
