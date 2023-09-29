@@ -61,39 +61,25 @@ class ClienteController {
   // }
 
 
-  logar(req, res) {
-   
+  logar(req, res) {   
    const { email, senha } = req.body;
-
     if (!email || !senha) {
       return res.status(400).json({ message: "As propriedades email e/ou senha não estão presentes em req.body." });
     }
-
     console.log(email, senha, "informacoesNovo");
-
-    // Resto do seu código de login
-
-    // Supondo que clienteModel.buscarLogin seja uma função assíncrona ou retorne uma Promise
     clienteModel.buscarLogin(email, senha)
       .then((usuario) => {
-        console.log(usuario, "caiu 33333");
-
         if (usuario !== null) {
-          // Responda com status 200 e uma mensagem JSON para sucesso
           res.status(200).json({ message: 'Login bem-sucedido' });
         } else {
-          // Responda com status 401 e uma mensagem JSON para credenciais inválidas
           res.status(401).json({ error: 'Credenciais inválidas' });
         }
       })
       .catch((error) => {
         console.error("Erro ao fazer login:", error);
-        // Responda com status 500 e uma mensagem JSON para erro interno do servidor
         res.status(500).json({ error: 'Erro interno do servidor' });
       });
   }
-
-
 }
 
 

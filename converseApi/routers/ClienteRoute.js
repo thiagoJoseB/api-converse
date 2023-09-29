@@ -39,11 +39,7 @@ router.post("/login",  async (req, res) => {
     try {
       const { email, senha } = req.body;
       console.log(email, senha , "informacoes");
-      // Chame o método de login da controladora e envie os dados de login
       const loginUsuario = await clienteController.logar(email, senha);
-      
-  
-      // Verifique se o login foi bem-sucedido
       if (loginUsuario) {
         res.status(200).json({ mensagem: "Login bem-sucedido", usuario: loginUsuario });
       } else {
