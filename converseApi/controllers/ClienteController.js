@@ -5,6 +5,8 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 
+app.use(express.json());
+
 class ClienteController {
   // 12
   insert(cadastroDados) {
@@ -61,12 +63,16 @@ class ClienteController {
   // }
 
 
-  logar(req, res) {   
-   const { email, senha } = req.body;
+  logar(req, res) {
+  
+    const { email, senha } = JSON.parse(req.body);
+  
     if (!email || !senha) {
       return res.status(400).json({ message: "As propriedades email e/ou senha não estão presentes em req.body." });
     }
+  
     console.log(email, senha, "informacoesNovo");
+  
     clienteModel.buscarLogin(email, senha)
       .then((usuario) => {
         if (usuario !== null) {
@@ -77,9 +83,10 @@ class ClienteController {
       })
       .catch((error) => {
         console.error("Erro ao fazer login:", error);
-        res.status(500).json({ error: 'Erro interno do servidor' });
+        res.status(500).json({ error: 'Erro interno do servidor1' });
       });
   }
+  
 }
 
 

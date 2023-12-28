@@ -60,34 +60,10 @@ class ClienteModel{
 
       // }
 
-      // buscarLogin(email, senha) {
-      //   const sql = "SELECT email, senha FROM tblUsuario WHERE email = ? AND senha = ?";
-      //   return new Promise((resolve, reject) => {
-      //     conexao.query(sql, [email, senha], (error, resposta) => {
-      //       if (error) {
-      //         console.log("Erro ao buscar dados de login", error);
-      //         reject(error);
-      //       } else {
-      //         if (resposta.length > 0) {
-      //           console.log("Dados de login encontrados:", resposta);
-      //           resolve(resposta[0]); // Retorna o primeiro resultado (assumindo que o email é único)
-      //           console.log(resposta, "caiu 111");
-      //         } else {
-      //           console.log("Nenhum dado de login encontrado para o email e senha fornecidos.");
-      //           resolve(null);
-      //         }
-      //       }
-      //     });
-      //   });
-      // }
-
-
       buscarLogin(email, senha) {
-        console.log(email, senha ,"testatststtst");
         const sql = "SELECT email, senha FROM tblUsuario WHERE email = ? AND senha = ?";
         return new Promise((resolve, reject) => {
           conexao.query(sql, [email, senha], (error, resposta) => {
-            // console.log(resposta , "testahdioidjdh");
             if (error) {
               console.log("Erro ao buscar dados de login", error);
               reject(error);
@@ -98,13 +74,14 @@ class ClienteModel{
                 console.log(resposta, "caiu 111");
               } else {
                 console.log("Nenhum dado de login encontrado para o email e senha fornecidos.");
-                resolve({}); // Retorna um objeto vazio
+                resolve(null);
               }
             }
           });
         });
       }
-      
+
+
       
 
 
