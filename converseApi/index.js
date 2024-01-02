@@ -11,12 +11,6 @@ const bodyParser = require('body-parser');
 const conexao = require("./database/conexao");
 const tabelas = require("./database/tabelas");
 
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
-
-// app.use('/login', Anyroute)
-// app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.json());
 tabelas.init(conexao);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

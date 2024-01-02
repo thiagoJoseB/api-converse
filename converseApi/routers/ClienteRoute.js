@@ -37,21 +37,13 @@ router.post("/cadastro", (req, res) => {
 //         res.status(400).json(error.message))
 // });
 
-
 router.post("/login", async (req, res) => {
-  try {
-    const { email, senha } = JSON.parse(req.body);
+ 
+    const { email, senha } = req.body;
     console.log(email, senha, "informacoes123");
-    const loginUsuario = await clienteController.logar(email, senha);
-    if (loginUsuario) {
-      res.status(200).json({ mensagem: "Login bem-sucedido", usuario: loginUsuario });
-    } else {
-      res.status(401).json({ mensagem: "Credenciais inválidas" });
-    }
-  } catch (error) {
-    console.error("Erro ao fazer login:", error);
-    res.status(500).json({ mensagem: "Erro interno do servidorr" });
-  }
+    const loginUsuario = await clienteController.logar(res, req);
+    console.log(loginUsuario,"null-login");
+    console.log(email, senha, "informacoes321");
 });
 
 module.exports = router;

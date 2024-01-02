@@ -42,24 +42,6 @@ class ClienteModel{
    
       }
 
-      ////funcao para buscar dados do login
-      // buscarLogin(){
-      //   const sql ="SELECT email, senha FROM tblUsuario";
-      //   return new Promise((resolve, reject) =>{
-      //     conexao.query(sql,[login.senha , login.email] , (error, resposta) => {
-      //       if (error) {
-      //         console.log("Erro ao buscar dados de login", error);
-      //         reject(error); 
-      //       }else{
-      //         console.log("dados de login", login);
-      //         resolve(resposta);
-      //       }
-      //     });
-      //   });
-       
-
-      // }
-
       buscarLogin(email, senha) {
         const sql = "SELECT email, senha FROM tblUsuario WHERE email = ? AND senha = ?";
         return new Promise((resolve, reject) => {
@@ -80,11 +62,6 @@ class ClienteModel{
           });
         });
       }
-
-
-      
-
-
 }
 
 module.exports = new ClienteModel();
