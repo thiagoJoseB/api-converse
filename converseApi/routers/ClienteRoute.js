@@ -46,5 +46,10 @@ router.post("/login", async (req, res) => {
     console.log(email, senha, "informacoes321");
 });
 
+
+/// passo 03
+router.post('/recuperar-senha', clienteController.sendRecoveryCodeByEmail);
+
+
 module.exports = router;
 

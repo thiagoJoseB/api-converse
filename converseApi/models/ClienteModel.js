@@ -6,7 +6,6 @@ const clienteRoute = require("../routers/ClienteRoute");
 class ClienteModel{
     // 14 
     // 11 novo fluxo
-
     create(cadastroDados) {
         const sql = "INSERT INTO tblUsuario (id, nome, cpf, email, celular, senha) VALUES (null, ?, ?, ?, ?, ?)";
 
@@ -42,7 +41,7 @@ class ClienteModel{
    
       }
 
-      buscarLogin(email, senha) {
+    buscarLogin(email, senha) {
         const sql = "SELECT email, senha FROM tblUsuario WHERE email = ? AND senha = ?";
         return new Promise((resolve, reject) => {
           conexao.query(sql, [email, senha], (error, resposta) => {
@@ -61,7 +60,23 @@ class ClienteModel{
             }
           });
         });
+      
       }
+
+    //  passo 01 e npm da biblioteca do nodemailer 
+    getUserByEmail = async (email) => {
+      const [rows] =  await conexao.execute('SELECT * FROM tblUsuario WHERE email = ?', [email]);
+      return rows[0];
+    };
+
+
+    updateUserRecoveryCode = async (email ,recoveryCode, expiration) => {
+      await conexao.execute('UPDATE users SET tblUsuario = ?, recoveryCodeExpiration = ? WHERE email = ?', [recoveryCode, expiration, email]);
+    }; 
+
+
+
+
 }
 
 module.exports = new ClienteModel();
